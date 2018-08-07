@@ -17,5 +17,6 @@ from django.contrib import admin
 from django.urls import path
 from invigilators.invigilators import views
 urlpatterns = [
+    path('invigilators/invigilatorassignment/add/',views.invigilator_assignment_view,name='invigilator_assignment_view'),
     path('', admin.site.urls)
 ]
