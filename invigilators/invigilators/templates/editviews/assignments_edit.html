@@ -1,0 +1,47 @@
+{% extends 'editviews/editViewsBase.html' %}
+<!-- for right now, just this will do-->
+{% block extrajs %}
+    <script>
+        let currentDate = $("#id_date").find(":selected");
+        let currentShift = $("#id_shift").find(":selected");
+        $("#id_date").children().remove().end().append(currentDate);
+        $("#id_shift").children().remove().end().append(currentShift);
+
+        $("#id_exam").change(function(){
+        let id = $(this).val();
+        $.ajax({
+        url: '{% url 'get_dates_and_shifts' %}',
+        data: {
+          'pk': id
+        },
+        dataType: 'json',
+        success: function (data) {
+            let datesJson = JSON.parse(data.dates);
+            let shiftsJson = JSON.parse(data.shifts);
+            let dateSelect = $('#id_date > option');
+            let shiftSelect = $('#id_shift >option');
+            for(let i =0;i<Object.keys(datesJson).length;i++)
+            {
+                let date = datesJson[i];
+                console.log(date);
+                $('#id_date').append($('<option>',{
+                    value:date.pk,
+                    text:date.fields.date
+            }));
+            for(let i =0;i<Object.keys(shiftsJson).length;i++)
+            {
+                let shift = shiftsJson[i];
+                console.log(shift);
+                $('#id_shift').append($('<option>',{
+                    value:shift.pk,
+                    text:shift.fields.shiftName + " ("+shift.fields.startTime+" to "+shift.fields.endTime+")"
+            }));
+
+            }
+
+        }
+        }
+    });
+        });
+    </script>
+{% endblock %}

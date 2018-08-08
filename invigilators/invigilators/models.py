@@ -40,7 +40,8 @@ class ExamRoom(models.Model):
 
 
 class InvigilatorAssignment(models.Model):
-
+    class Meta:
+        unique_together = (('exam','date','shift'),)
     exam = models.ForeignKey(Exam,on_delete=models.CASCADE,related_name='invigilator_assignments')
     # related to invigilator with a reverse relation "invigilators"
     date = models.ForeignKey(ExamDate,on_delete=models.CASCADE,related_name='invigilator_assignments')

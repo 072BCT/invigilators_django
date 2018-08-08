@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from invigilators.invigilators import views
 urlpatterns = [
+    path('ajax/get_dates_and_shifts/',views.get_dates_and_shifts,name='get_dates_and_shifts'),
     path('admin/', admin.site.urls),
     path('',views.index, name='index'),
     path('exams/', views.exams_lv, name='exams_lv'),
@@ -35,7 +36,7 @@ urlpatterns = [
     path('exam_instances_edit/', views.exam_instances_edit, name='exam_instances_edit'),
     path('exam_instances_add/', views.exam_instances_add, name='exam_instances_add'),
     path('exam_instances_remove/', views.exam_instances_remove, name='exam_instances_remove'),
-    path('assignments_edit/', views.assignments_edit, name='assignments_edit'),
+    path('assignments_edit/<int:pk>', views.assignments_edit, name='assignments_edit'),
     path('assignments_add/', views.assignments_add, name='assignments_add'),
     path('assignments_remove/', views.assignments_remove, name='assignments_remove'),
 

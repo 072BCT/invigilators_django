@@ -3,9 +3,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from .models import *
 from .formsDir.examRoomForm import ExamRoomForm
+from .formsDir.assignmentsForm import AssignmentsForm
 from django.contrib.auth import admin
-
-
+from django.http import JsonResponse
+from django.core import serializers
 # Create your views here.
 
 def index(request):
@@ -110,8 +111,18 @@ def exam_instances_remove(request):
     return None
 
 
-def assignments_edit(request):
-    return None
+def assignments_edit(request,pk):
+    assignment = get_object_or_404(InvigilatorAssignment,pk=pk)
+    if not request.POST:
+        form = AssignmentsForm(None,instance=assignment)
+    elif request.POST:
+        form = AssignmentsForm(request.POST)
+        form.save()
+        return redirect('assignments_lv')
+    return render(request,'editviews/assignments_edit.html',
+                  {'listViewUrl':reverse('assignments_lv'),
+                   'listViewName':'Invigilator Assignments','name':'Edit Invigilator assignment','form':form})
+
 
 
 def assignments_add(request):
@@ -132,3 +143,14 @@ def exam_dates_add(request):
 
 def exam_dates_remove(request):
     return None
+
+
+def get_dates_and_shifts(request):
+    examID = request.GET.get('pk',None)
+    print(examID)
+    exam = get_object_or_404(Exam,pk=examID)
+    data = {
+        'dates':serializers.serialize("json",exam.dates.all()),
+        'shifts':serializers.serialize("json",exam.shifts.all())
+    }
+    return JsonResponse(data)
