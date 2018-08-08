@@ -1,0 +1,10 @@
+{% extends 'listViews/list_view_base.html' %}
+{% block data %}
+    {% for exam_room in exam_rooms %}
+        <td>{{ exam_room.name }}</td>
+        <td>{{ exam_room.capacity }}</td>
+        <td><a class="btn btn-primary" role="button" href="{% url 'exam_rooms_edit' exam_room.pk %}"><i class="fa fa-edit"></i></a>
+        <a class="btn btn-danger" role="button" href="{% url 'exam_rooms_remove' %}"><i class="fa fa-trash"></i></a></td>
+
+    {% endfor %}
+{% endblock %}

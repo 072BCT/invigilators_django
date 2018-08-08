@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+
+{% endblock %}
+{% block content %}
+    <ul class="list-group">
+    {% for nameAndUrl in modelNamesAndUrls %}
+        <a href={{ nameAndUrl.1 }}><li class="list-group-item">{{ nameAndUrl.0}}</li></a>
+    {% endfor %}
+    </ul>
+{% endblock %}

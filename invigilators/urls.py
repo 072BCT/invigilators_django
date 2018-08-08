@@ -17,6 +17,30 @@ from django.contrib import admin
 from django.urls import path
 from invigilators.invigilators import views
 urlpatterns = [
-    path('invigilators/invigilatorassignment/add/',views.invigilator_assignment_view,name='invigilator_assignment_view'),
-    path('', admin.site.urls)
+    path('admin/', admin.site.urls),
+    path('',views.index, name='index'),
+    path('exams/', views.exams_lv, name='exams_lv'),
+    path('examinstances/', views.exam_instances_lv, name='exam_instances_lv'),
+    path('invigilators/', views.invigilators_lv, name='invigilators_lv'),
+    path('assignments/', views.assignments_lv, name='assignments_lv'),
+    path('examrooms/', views.exam_rooms_lv, name='exam_rooms_lv'),
+    path('dates/', views.exam_dates_lv, name='exam_dates_lv'),
+    path('shifts/', views.exam_shifts_lv, name='shifts_lv'),
+    path('exam_rooms_edit/<int:pk>',views.exam_rooms_edit,name='exam_rooms_edit'),
+    path('exam_rooms_add/', views.exam_rooms_add, name='exam_rooms_add'),
+    path('exam_rooms_remove/', views.exam_rooms_remove, name='exam_rooms_remove'),
+    path('exams_edit/', views.exams_edit, name='exams_edit'),
+    path('exams_add/', views.exams_add, name='exams_add'),
+    path('exams_remove/', views.exams_remove, name='exams_remove'),
+    path('exam_instances_edit/', views.exam_instances_edit, name='exam_instances_edit'),
+    path('exam_instances_add/', views.exam_instances_add, name='exam_instances_add'),
+    path('exam_instances_remove/', views.exam_instances_remove, name='exam_instances_remove'),
+    path('assignments_edit/', views.assignments_edit, name='assignments_edit'),
+    path('assignments_add/', views.assignments_add, name='assignments_add'),
+    path('assignments_remove/', views.assignments_remove, name='assignments_remove'),
+
+
+   # path('exam_dates_edit/', views.exam_dates_edit, name='exam_dates_edit'),
+   # path('exam_dates_add/', views.exam_dates_add, name='exam_dates_add'),
+    #path('exam_dates_remove/', views.exam_dates_remove, name='exam_dates_remove'),
 ]

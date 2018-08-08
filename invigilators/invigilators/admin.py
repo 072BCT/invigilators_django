@@ -19,6 +19,3 @@ admin.site.register(InvigilatorAssignment)
 admin.site.register(ExamDate)
 admin.site.register(Shift)
 
-
-
-

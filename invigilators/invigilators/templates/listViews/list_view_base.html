@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
+    <li class="breadcrumb-item">{{ name }}</li>
+{% endblock %}
+{% block content %}
+    <table class="table">
+    <thead>
+        <tr>
+            {% for heading in headings %}
+            <th scope="col">{{ heading }}</th>
+            {% endfor %}
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% block data %}
+            {% endblock %}
+        </tr>
+    </tbody>
+    </table>
+{% endblock %}
