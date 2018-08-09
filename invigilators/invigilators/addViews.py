@@ -70,4 +70,11 @@ def shifts_add(request):
 
 
 def invigilators_add(request):
-    return None
+    if request.method =='POST':
+        form = InvigilatorForm(request.POST)
+        if form.is_valid():
+            invigilator = form.save()
+            return redirect('invigilators_lv')
+    else:
+        form = InvigilatorForm()
+    return render(request,'addViews/invigilators_add.html',{})
