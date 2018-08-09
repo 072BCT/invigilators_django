@@ -57,70 +57,10 @@ def exam_shifts_lv(request):
                                                    'exam_shifts': get_all_objects(Shift), 'headings': headings})
 
 
-def exam_instances_lv(request):
-    headings = ['Exam','Date','Shift']
-    return render(request, 'listViews/exam_instances_lv.html',{'name':'Exam Instances',
-                                                    'exam_instances':get_all_objects(ExamInstance),'headings':headings})
-
-
 def exam_rooms_lv(request):
     headings = ['Name', 'Capacity']
     exam_rooms = get_all_objects(ExamRoom)
     return render(request, 'listViews/exam_rooms_lv.html', {'name': 'Exam Rooms', 'exam_rooms': exam_rooms, 'headings': headings})
-
-
-
-def exam_rooms_add(request):
-    return None
-
-
-def exam_rooms_remove(request):
-    return None
-
-
-def exams_edit(request):
-    return None
-
-
-def exams_add(request):
-    return None
-
-
-def exams_remove(request):
-    return None
-
-
-def exam_instances_edit(request):
-    return None
-
-
-def exam_instances_add(request):
-    return None
-
-
-def exam_instances_remove(request):
-    return None
-
-
-
-def assignments_add(request):
-    return None
-
-
-def assignments_remove(request):
-    return None
-
-
-def exam_dates_edit(request):
-    return None
-
-
-def exam_dates_add(request):
-    return None
-
-
-def exam_dates_remove(request):
-    return None
 
 
 def get_dates_and_shifts(request):

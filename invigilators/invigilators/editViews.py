@@ -40,3 +40,10 @@ def assignments_edit(request,pk):
                   {'listViewUrl':reverse('assignments_lv'),
                    'listViewName':'Invigilator Assignments','name':'Edit Invigilator assignment','form':form})
 
+
+def exam_dates_edit(request):
+    return None
+
+
+def shifts_edit(request):
+    return None

@@ -22,3 +22,11 @@ def exam_instances_remove(request):
 
 def assignments_remove(request):
     return None
+
+
+def exam_dates_remove(request):
+    return None
+
+
+def shifts_remove(request):
+    return None
