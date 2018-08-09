@@ -1,0 +1,12 @@
+{% extends 'listViews/list_view_base.html' %}
+{% block data %}
+            <td>{{ object.title }}</td>
+
+            <td><a class="btn btn-primary" role="button" href="{% url 'exams_edit' object.pk %}"><i class="fa fa-edit"></i></a>
+            <a class="btn btn-danger" role="button" href="{% url 'exams_remove' %}"><i class="fa fa-trash"></i></a></td>
+
+
+{% endblock %}
+{% block addBtn %}
+            <a class="btn btn-success" href="{% url 'exams_add' %}">Add new Exam</a>
+        {% endblock %}

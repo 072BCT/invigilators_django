@@ -1,13 +1,13 @@
 {% extends 'listViews/list_view_base.html' %}
 
-{% block data %}
-    {% for assignment in assignments %}
-        <tr>
-            <td>{{ assignment.exam }}</td>
-            <td>{{ assignment.date }}</td>
-            <td>{{ assignment.shift }}</td>
-            <td><a class="btn btn-primary" role="button" href="{% url 'assignments_edit' assignment.pk %}"><i class="fa fa-edit"></i></a>
+
+        {% block data %}
+            <td>{{ object.exam }}</td>
+            <td>{{ object.date }}</td>
+            <td>{{ object.shift }}</td>
+            <td><a class="btn btn-primary" role="button" href="{% url 'assignments_edit' object.pk %}"><i class="fa fa-edit"></i></a>
             <a class="btn btn-danger" role="button" href="{% url 'assignments_remove' %}"><i class="fa fa-trash"></i></a></td>
-        </tr>
-    {% endfor %}
-{% endblock %}
+        {% endblock %}
+        {% block addBtn %}
+            <a class="btn btn-success" href="{% url 'assignments_add' %}">Assign a new Invigilator</a>
+        {% endblock %}

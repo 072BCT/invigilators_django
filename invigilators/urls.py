@@ -31,19 +31,21 @@ urlpatterns = [
     path('exam_rooms_edit/<int:pk>',editViews.exam_rooms_edit,name='exam_rooms_edit'),
     path('exam_rooms_add/', addViews.exam_rooms_add, name='exam_rooms_add'),
     path('exam_rooms_remove/', deleteViews.exam_rooms_remove, name='exam_rooms_remove'),
-    path('exams_edit/', editViews.exams_edit, name='exams_edit'),
+    path('exams_edit/<int:pk>', editViews.exams_edit, name='exams_edit'),
     path('exams_add/', addViews.exams_add, name='exams_add'),
     path('exams_remove/', deleteViews.exams_remove, name='exams_remove'),
 
     path('assignments_edit/<int:pk>', editViews.assignments_edit, name='assignments_edit'),
     path('assignments_add/', addViews.assignments_add, name='assignments_add'),
     path('assignments_remove/', deleteViews.assignments_remove, name='assignments_remove'),
+    path('invigilators_edit/<int:pk>', editViews.invigilators_edit, name='invigilators_edit'),
+    path('invigilators_add/', addViews.invigilators_add, name='invigilators_add'),
+    path('invigilators_remove/', deleteViews.invigilators_remove, name='invigilators_remove'),
 
-
-    path('exam_dates_edit/', editViews.exam_dates_edit, name='exam_dates_edit'),
+    path('exam_dates_edit/<int:pk>', editViews.exam_dates_edit, name='exam_dates_edit'),
     path('exam_dates_add/', addViews.exam_dates_add, name='exam_dates_add'),
     path('exam_dates_remove/', deleteViews.exam_dates_remove, name='exam_dates_remove'),
-    path('shifts_edit/', editViews.shifts_edit, name='shifts_edit'),
+    path('shifts_edit/<int:pk>', editViews.shifts_edit, name='shifts_edit'),
     path('shifts_add/', addViews.shifts_add, name='shifts_add'),
     path('shifts_remove/', deleteViews.shifts_remove, name='shifts_remove'),
 ]

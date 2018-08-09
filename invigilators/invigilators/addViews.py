@@ -68,3 +68,6 @@ def shifts_add(request):
         form = AssignmentsForm()
     return render(request,'addViews/shifts_add.html',{})
 
+
+def invigilators_add(request):
+    return None

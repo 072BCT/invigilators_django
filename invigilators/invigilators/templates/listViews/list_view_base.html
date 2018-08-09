@@ -15,9 +15,18 @@
     </thead>
     <tbody>
 
-            {% block data %}
-            {% endblock %}
+
+            {% for object in objects %}
+                <tr>
+                    {% block data %}
+                    {% endblock %}
+                </tr>
+            {% endfor %}
         
     </tbody>
     </table>
+    <div class="pt-3" id="addBtn">
+                {% block addBtn %}
+                {% endblock %}
+    </div>
 {% endblock %}

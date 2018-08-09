@@ -30,3 +30,7 @@ def exam_dates_remove(request):
 
 def shifts_remove(request):
     return None
+
+
+def invigilators_remove(request):
+    return None

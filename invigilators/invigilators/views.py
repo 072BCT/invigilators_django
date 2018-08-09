@@ -29,38 +29,38 @@ def get_all_objects(model):
 def exams_lv(request):
     headings = ['Name']
 
-    return render(request, 'listViews/exams_lv.html', {'name': 'Exams', 'exams': get_all_objects(Exam), 'headings': headings})
+    return render(request, 'listViews/exams_lv.html', {'name': 'Exams', 'objects': get_all_objects(Exam), 'headings': headings})
 
 
 def invigilators_lv(request):
     headings = ['Name']
     return render(request, 'listViews/invigilators_lv.html', {'name': 'Invigilators',
-                                                    'invigilators': get_all_objects(Invigilator), 'headings': headings})
+                                                    'objects': get_all_objects(Invigilator), 'headings': headings})
 
 
 def assignments_lv(request):
     headings = ['Exam', 'Date', 'Shift']
     return render(request, 'listViews/assignments_lv.html', {'name': 'Assign Invigilators',
-                                                   'assignments': get_all_objects(InvigilatorAssignment),
+                                                   'objects': get_all_objects(InvigilatorAssignment),
                                                    'headings': headings})
 
 
 def exam_dates_lv(request):
     headings = ['Exam', 'Date']
     return render(request, 'listViews/exam_dates_lv.html', {'name': 'Exam Dates',
-                                                  'dates': get_all_objects(ExamDate), 'headings': headings})
+                                                  'objects': get_all_objects(ExamDate), 'headings': headings})
 
 
 def exam_shifts_lv(request):
     headings = ['Name', 'Start Time', 'End Time']
     return render(request, 'listViews/exam_shifts_lv.html', {'name': 'Exam Shifts',
-                                                   'exam_shifts': get_all_objects(Shift), 'headings': headings})
+                                                   'objects': get_all_objects(Shift), 'headings': headings})
 
 
 def exam_rooms_lv(request):
     headings = ['Name', 'Capacity']
     exam_rooms = get_all_objects(ExamRoom)
-    return render(request, 'listViews/exam_rooms_lv.html', {'name': 'Exam Rooms', 'exam_rooms': exam_rooms, 'headings': headings})
+    return render(request, 'listViews/exam_rooms_lv.html', {'name': 'Exam Rooms', 'objects': exam_rooms, 'headings': headings})
 
 
 def get_dates_and_shifts(request):

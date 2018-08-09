@@ -20,11 +20,11 @@ def exam_rooms_edit(request,pk):
                    'form': form})
 
 
-def exams_edit(request):
+def exams_edit(request,pk):
     return None
 
 
-def exam_instances_edit(request):
+def exam_instances_edit(request,pk):
     return None
 
 
@@ -41,9 +41,13 @@ def assignments_edit(request,pk):
                    'listViewName':'Invigilator Assignments','name':'Edit Invigilator assignment','form':form})
 
 
-def exam_dates_edit(request):
+def exam_dates_edit(request,pk):
     return None
 
 
-def shifts_edit(request):
+def shifts_edit(request,pk):
+    return None
+
+
+def invigilators_edit(request,pk):
     return None
