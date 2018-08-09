@@ -14,7 +14,7 @@ admin.site.site_title = "Invigilators"
 admin.site.register(Exam)
 admin.site.register(Invigilator)
 admin.site.register(ExamRoom)
-admin.site.register(ExamInstance)
+
 admin.site.register(InvigilatorAssignment)
 admin.site.register(ExamDate)
 admin.site.register(Shift)

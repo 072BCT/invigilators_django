@@ -5,7 +5,7 @@ from django.db import models
 
 class Exam(models.Model):
     title = models.CharField(max_length=255,unique=True)
-    examRooms = models.ManyToManyField('ExamRoom',related_name='exams')
+
 
     def __str__(self):
         return self.title
@@ -46,6 +46,7 @@ class InvigilatorAssignment(models.Model):
     # related to invigilator with a reverse relation "invigilators"
     date = models.ForeignKey(ExamDate,on_delete=models.CASCADE,related_name='invigilator_assignments')
     shift = models.ForeignKey(Shift,on_delete=models.CASCADE,related_name='invigilator_assignments')
+    examroom = models.OneToOneField(ExamRoom,on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return self.exam.title
@@ -60,10 +61,3 @@ class Invigilator(models.Model):
         return self.name
 
 
-class ExamInstance(models.Model):
-    exam = models.ForeignKey(Exam, on_delete=models.DO_NOTHING, related_name='examInstances')
-    date = models.ForeignKey(ExamDate, on_delete=models.DO_NOTHING, related_name='examInstances')
-    shift = models.ForeignKey(Shift,on_delete=models.DO_NOTHING,related_name='examInstances')
-
-    def __str__(self):
-        return self.exam.title + " " + str(self.date) + " " + self.shift.shiftName

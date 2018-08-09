@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from invigilators.invigilators import views
+from invigilators.invigilators import addViews, editViews , deleteViews
 urlpatterns = [
     path('ajax/get_dates_and_shifts/',views.get_dates_and_shifts,name='get_dates_and_shifts'),
     path('admin/', admin.site.urls),
@@ -27,18 +28,18 @@ urlpatterns = [
     path('examrooms/', views.exam_rooms_lv, name='exam_rooms_lv'),
     path('dates/', views.exam_dates_lv, name='exam_dates_lv'),
     path('shifts/', views.exam_shifts_lv, name='shifts_lv'),
-    path('exam_rooms_edit/<int:pk>',views.exam_rooms_edit,name='exam_rooms_edit'),
-    path('exam_rooms_add/', views.exam_rooms_add, name='exam_rooms_add'),
-    path('exam_rooms_remove/', views.exam_rooms_remove, name='exam_rooms_remove'),
-    path('exams_edit/', views.exams_edit, name='exams_edit'),
-    path('exams_add/', views.exams_add, name='exams_add'),
-    path('exams_remove/', views.exams_remove, name='exams_remove'),
-    path('exam_instances_edit/', views.exam_instances_edit, name='exam_instances_edit'),
-    path('exam_instances_add/', views.exam_instances_add, name='exam_instances_add'),
-    path('exam_instances_remove/', views.exam_instances_remove, name='exam_instances_remove'),
-    path('assignments_edit/<int:pk>', views.assignments_edit, name='assignments_edit'),
-    path('assignments_add/', views.assignments_add, name='assignments_add'),
-    path('assignments_remove/', views.assignments_remove, name='assignments_remove'),
+    path('exam_rooms_edit/<int:pk>',editViews.exam_rooms_edit,name='exam_rooms_edit'),
+    path('exam_rooms_add/', addViews.exam_rooms_add, name='exam_rooms_add'),
+    path('exam_rooms_remove/', deleteViews.exam_rooms_remove, name='exam_rooms_remove'),
+    path('exams_edit/', editViews.exams_edit, name='exams_edit'),
+    path('exams_add/', addViews.exams_add, name='exams_add'),
+    path('exams_remove/', deleteViews.exams_remove, name='exams_remove'),
+    path('exam_instances_edit/', editViews.exam_instances_edit, name='exam_instances_edit'),
+    path('exam_instances_add/', addViews.exam_instances_add, name='exam_instances_add'),
+    path('exam_instances_remove/', deleteViews.exam_instances_remove, name='exam_instances_remove'),
+    path('assignments_edit/<int:pk>', editViews.assignments_edit, name='assignments_edit'),
+    path('assignments_add/', addViews.assignments_add, name='assignments_add'),
+    path('assignments_remove/', deleteViews.assignments_remove, name='assignments_remove'),
 
 
    # path('exam_dates_edit/', views.exam_dates_edit, name='exam_dates_edit'),
