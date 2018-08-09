@@ -5,6 +5,7 @@
             <td>{{ object.exam }}</td>
             <td>{{ object.date }}</td>
             <td>{{ object.shift }}</td>
+            <td>{{ object.examroom }}</td>
             <td><a class="btn btn-primary" role="button" href="{% url 'assignments_edit' object.pk %}"><i class="fa fa-edit"></i></a>
             <a class="btn btn-danger" role="button" href="{% url 'assignments_remove' %}"><i class="fa fa-trash"></i></a></td>
         {% endblock %}

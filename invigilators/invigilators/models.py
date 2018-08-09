@@ -55,7 +55,8 @@ class InvigilatorAssignment(models.Model):
 class Invigilator(models.Model):
     name = models.CharField(unique=True,max_length=255,blank=False)
     assignment = models.ForeignKey(InvigilatorAssignment,related_name='invigilators',blank=True,null=True,
-                                   on_delete=models.DO_NOTHING)
+                                   on_delete=models.CASCADE)
+    examroom = models.ForeignKey(ExamRoom,related_name='invigilators',blank=True,null=True,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

@@ -20,7 +20,10 @@ def exam_rooms_add(request):
             return redirect('exam_rooms_lv')
     else:
         form = ExamRoomForm()
-    return render(request,'addViews/exam_rooms_add.html',{})
+    return render(request, 'addViews/addViewBase.html', {'listViewUrl': reverse('exam_rooms_lv'),
+                                                         'listViewName': 'Exam Rooms',
+                                                         'name': 'Add New Exam Room',
+                                                         'form': form})
 
 def exams_add(request):
     if request.method =='POST':
@@ -30,7 +33,11 @@ def exams_add(request):
             return redirect('exams_lv')
     else:
         form = ExamForm()
-    return render(request,'addViews/exam_add.html',{})
+    return render(request,'addViews/addViewBase.html',{'listViewUrl':reverse('exams_lv'),
+                                                        'listViewName':'Exams',
+                                                       'name':'Add New Exam',
+                                                       'form':form})
+
 
 
 def assignments_add(request):
@@ -41,7 +48,10 @@ def assignments_add(request):
             return redirect('assignments_lv')
     else:
         form = AssignmentsForm()
-    return render(request,'addViews/assignments_add.html',{})
+    return render(request, 'addViews/addViewBase.html', {'listViewUrl': reverse('assignments_lv'),
+                                                         'listViewName': 'Assignments',
+                                                         'name': 'Assign Invigilator',
+                                                         'form': form})
 
 
 
@@ -53,7 +63,10 @@ def exam_dates_add(request):
             return redirect('exam_dates_lv')
     else:
         form = ExamDateForm()
-    return render(request,'addViews/examdates_add.html',{})
+    return render(request, 'addViews/addViewBase.html', {'listViewUrl': reverse('exam_dates_lv'),
+                                                         'listViewName': 'Exam Dates',
+                                                         'name': 'Add New Exam Date',
+                                                         'form': form})
 
 
 
@@ -65,8 +78,11 @@ def shifts_add(request):
             shift = form.save()
             return redirect('shifts_lv')
     else:
-        form = AssignmentsForm()
-    return render(request,'addViews/shifts_add.html',{})
+        form = ShiftForm()
+    return render(request, 'addViews/addViewBase.html', {'listViewUrl': reverse('shifts_lv'),
+                                                         'listViewName': 'Shifts',
+                                                         'name': 'Add New Shift',
+                                                         'form': form})
 
 
 def invigilators_add(request):
@@ -77,4 +93,7 @@ def invigilators_add(request):
             return redirect('invigilators_lv')
     else:
         form = InvigilatorForm()
-    return render(request,'addViews/invigilators_add.html',{})
+    return render(request, 'addViews/addViewBase.html', {'listViewUrl': reverse('invigilators_lv'),
+                                                         'listViewName': 'Invigilators',
+                                                         'name': 'Add New Invigilator',
+                                                         'form': form})

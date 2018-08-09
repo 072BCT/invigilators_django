@@ -33,13 +33,13 @@ def exams_lv(request):
 
 
 def invigilators_lv(request):
-    headings = ['Name']
+    headings = ['Name','Assigned To']
     return render(request, 'listViews/invigilators_lv.html', {'name': 'Invigilators',
                                                     'objects': get_all_objects(Invigilator), 'headings': headings})
 
 
 def assignments_lv(request):
-    headings = ['Exam', 'Date', 'Shift']
+    headings = ['Exam', 'Date', 'Shift','Room']
     return render(request, 'listViews/assignments_lv.html', {'name': 'Assign Invigilators',
                                                    'objects': get_all_objects(InvigilatorAssignment),
                                                    'headings': headings})
@@ -52,7 +52,7 @@ def exam_dates_lv(request):
 
 
 def exam_shifts_lv(request):
-    headings = ['Name', 'Start Time', 'End Time']
+    headings = ['Name', 'Exam', 'Start Time','End Time']
     return render(request, 'listViews/exam_shifts_lv.html', {'name': 'Exam Shifts',
                                                    'objects': get_all_objects(Shift), 'headings': headings})
 
