@@ -1,7 +1,11 @@
 {% extends 'listViews/list_view_base.html' %}
 {% block data %}
             <td>{{ object.name }}</td>
-            <td>{{ object.assignment }}</td>
+            <td>{% for assignment in object.assignments.all %}
+            {{ assignment }}
+                <br>
+            {% endfor %}
+            </td>
             <td><a class="btn btn-primary" role="button" href="{% url 'invigilators_edit' object.pk %}"><i class="fa fa-edit"></i></a>
             <a class="btn btn-danger" role="button" href="{% url 'invigilators_remove' %}"><i class="fa fa-trash"></i></a></td>
 

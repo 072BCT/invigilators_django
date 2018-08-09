@@ -4,8 +4,8 @@
             <td>{{ object.exam }}</td>
             <td>{{ object.startTime }}</td>
             <td>{{ object.endTime }}</td>
-            <td><a class="btn btn-primary" role="button" href="{% url 'exam_rooms_edit' object.pk %}"><i class="fa fa-edit"></i></a>
-            <a class="btn btn-danger" role="button" href="{% url 'exam_rooms_remove' %}"><i class="fa fa-trash"></i></a></td>
+            <td><a class="btn btn-primary" role="button" href="{% url 'shifts_edit' object.pk %}"><i class="fa fa-edit"></i></a>
+            <a class="btn btn-danger" role="button" href="{% url 'shifts_remove' %}"><i class="fa fa-trash"></i></a></td>
 
 
 {% endblock %}
