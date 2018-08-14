@@ -1,9 +1,34 @@
 {% extends 'base.html' %}
+
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
     <li class="breadcrumb-item">{{ name }}</li>
 {% endblock %}
 {% block content %}
+    {% block modal %}
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="exampleModalLabel"><i class="fa fa-skull"></i> Alert</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary" id="confirm">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    {% endblock %}
+
     <table class="table">
     <thead>
         <tr>
@@ -18,6 +43,7 @@
 
             {% for object in objects %}
                 <tr>
+                <td hidden>{{ object.id }}</td>
                     {% block data %}
                     {% endblock %}
                 </tr>
@@ -29,4 +55,51 @@
                 {% block addBtn %}
                 {% endblock %}
     </div>
+{% endblock %}
+{% block extrajs %}
+
+    <script>
+        $('#confirm').click(function(){
+        let id = $('.deleteButton').closest('tr').children().first();
+        let idText = id.text();
+        let idNum = parseInt(id.text());
+        let deleteUrls=[];
+        deleteUrls = {{ deleteUrls|safe }};
+        console.log(deleteUrls);
+        let deleteUrl ="";
+        for(let i=0;i<deleteUrls.length;i++)
+        {
+            deleteUrl = deleteUrls[i];
+            let actualId = parseInt(deleteUrl.substr(deleteUrl.length-1));
+
+            if(actualId===idNum)
+            {
+
+                break;
+            }
+        }
+
+        $.ajax({
+        url: deleteUrl.toString(),
+        data: {
+
+        },
+        dataType: 'json',
+        success: function () {
+                    console.log('success');
+                    location.reload(true);
+                },
+            error: function () {
+                console.log("error");
+
+            }
+
+            });
+        });
+
+
+
+
+
+    </script>
 {% endblock %}

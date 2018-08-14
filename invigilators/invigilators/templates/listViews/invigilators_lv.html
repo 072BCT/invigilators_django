@@ -7,8 +7,7 @@
             {% endfor %}
             </td>
             <td><a class="btn btn-primary" role="button" href="{% url 'invigilators_edit' object.pk %}"><i class="fa fa-edit"></i></a>
-            <a class="btn btn-danger" role="button" href="{% url 'invigilators_remove' %}"><i class="fa fa-trash"></i></a></td>
-
+            <button class="btn btn-danger deleteButton" type="button"  role="button" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i></button></td>
 
 {% endblock %}
 {% block addBtn %}

@@ -28,39 +28,84 @@ def get_all_objects(model):
 
 def exams_lv(request):
     headings = ['Name']
+    objects = get_all_objects(Exam)
+    deleteUrls = []
+    for object in objects:
+        url = reverse('exams_remove', kwargs={'pk': object.pk})
+        deleteUrls.append(url)
 
-    return render(request, 'listViews/exams_lv.html', {'name': 'Exams', 'objects': get_all_objects(Exam), 'headings': headings})
+    return render(request, 'listViews/exams_lv.html', {'name': 'Exams',
+                                                       'objects': get_all_objects(Exam),
+                                                       'headings': headings,
+                                                       'deleteUrls':deleteUrls})
 
 
 def invigilators_lv(request):
     headings = ['Name','Assigned To']
+    objects = get_all_objects(Invigilator)
+    deleteUrls = []
+    for object in objects:
+        url = reverse('invigilators_remove', kwargs={'pk': object.pk})
+        deleteUrls.append(url)
+
     return render(request, 'listViews/invigilators_lv.html', {'name': 'Invigilators',
-                                                    'objects': get_all_objects(Invigilator), 'headings': headings})
+                                                    'objects': get_all_objects(Invigilator), 'headings': headings,
+                                                    'deleteUrls':deleteUrls})
 
 
 def assignments_lv(request):
     headings = ['Exam', 'Date', 'Shift','Room']
+    objects = get_all_objects(InvigilatorAssignment)
+    deleteUrls = []
+    for object in objects:
+        url = reverse('assignments_remove',kwargs={'pk':object.pk})
+        deleteUrls.append(url)
     return render(request, 'listViews/assignments_lv.html', {'name': 'Assign Invigilators',
                                                    'objects': get_all_objects(InvigilatorAssignment),
-                                                   'headings': headings})
+                                                   'headings': headings,
+                                                       'deleteUrls':deleteUrls})
 
 
 def exam_dates_lv(request):
     headings = ['Exam', 'Date']
+    objects = get_all_objects(ExamDate)
+    deleteUrls = []
+    for object in objects:
+        url = reverse('exam_dates_remove', kwargs={'pk': object.pk})
+        deleteUrls.append(url)
+
     return render(request, 'listViews/exam_dates_lv.html', {'name': 'Exam Dates',
-                                                  'objects': get_all_objects(ExamDate), 'headings': headings})
+                                                  'objects': get_all_objects(ExamDate),
+                                                            'headings': headings,
+                                                       'deleteUrls': deleteUrls})
 
 
 def exam_shifts_lv(request):
     headings = ['Name', 'Exam', 'Start Time','End Time']
+    objects = get_all_objects(Shift)
+    deleteUrls = []
+    for object in objects:
+        url = reverse('exam_shifts_remove', kwargs={'pk': object.pk})
+        deleteUrls.append(url)
+
     return render(request, 'listViews/exam_shifts_lv.html', {'name': 'Exam Shifts',
-                                                   'objects': get_all_objects(Shift), 'headings': headings})
+                                                   'objects': get_all_objects(Shift),
+                                                             'headings': headings,
+                                                       'deleteUrls': deleteUrls})
 
 
 def exam_rooms_lv(request):
     headings = ['Name', 'Capacity']
-    exam_rooms = get_all_objects(ExamRoom)
-    return render(request, 'listViews/exam_rooms_lv.html', {'name': 'Exam Rooms', 'objects': exam_rooms, 'headings': headings})
+    objects = get_all_objects(ExamRoom)
+    deleteUrls = []
+    for object in objects:
+        url = reverse('exam_rooms_remove', kwargs={'pk': object.pk})
+        deleteUrls.append(url)
+
+        return render(request, 'listViews/exam_rooms_lv.html', {'name': 'Exam Rooms',
+                                                            'objects': objects,
+                                                            'headings': headings,
+                                                       'deleteUrls': deleteUrls})
 
 
 def get_dates_and_shifts(request):

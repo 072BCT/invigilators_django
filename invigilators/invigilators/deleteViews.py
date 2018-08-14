@@ -8,29 +8,28 @@ from django.contrib.auth import admin
 from django.http import JsonResponse
 from django.core import serializers
 
-def exam_rooms_remove(request):
-    return None
+def exam_rooms_remove(request,pk):
+    ExamRoom.objects.filter(pk=pk).delete()
+    return JsonResponse({'message':'success'})
+
+def exams_remove(request,pk):
+    Exam.objects.filter(pk=pk).delete()
+    return JsonResponse({'message': 'success'})
+
+def assignments_remove(request,pk):
+    InvigilatorAssignment.objects.filter(pk=pk).delete()
+    print("removed assignment")
+    return JsonResponse({'message': 'success'})
+
+def exam_dates_remove(request,pk):
+    ExamDate.objects.filter(pk=pk).delete()
+    return JsonResponse({'message': 'success'})
+
+def shifts_remove(request,pk):
+    Shift.objects.filter(pk=pk).delete()
+    return JsonResponse({'message': 'success'})
 
 
-def exams_remove(request):
-    return None
-
-
-def exam_instances_remove(request):
-    return None
-
-
-def assignments_remove(request):
-    return None
-
-
-def exam_dates_remove(request):
-    return None
-
-
-def shifts_remove(request):
-    return None
-
-
-def invigilators_remove(request):
-    return None
+def invigilators_remove(request,pk):
+    Invigilator.objects.filter(pk=pk).delete()
+    return JsonResponse({'message': 'success'})

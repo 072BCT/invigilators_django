@@ -1,15 +1,10 @@
 {% extends 'base.html' %}
-
 {% block breadcrumb %}
     <li class="breadcrumb-item"><a href="{% url 'index' %}">Home</a></li>
     <li class="breadcrumb-item"><a href={{ listViewUrl }}>{{ listViewName }}</a></li>
-    <li class="breadcrumb-item active">{{ name }}</li>
+    <li class="breadcrumb-item"><a href="{{ editViewUrl }}">{{ editViewName }}</a></li>
+    <li class="breadcrumb-item active">Delete {{ modelName }}</li>
 {% endblock %}
-
 {% block content %}
-    <form method="post">
-    {% csrf_token %}
-    {% include 'includes/form.html' %}
-    <button type="submit" class="btn btn-success">Save</button>
-    </form>
+
 {% endblock %}
