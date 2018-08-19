@@ -41,7 +41,7 @@ urlpatterns = [
     path('invigilators_edit/<int:pk>', editViews.invigilators_edit, name='invigilators_edit'),
     path('invigilators_add/', addViews.invigilators_add, name='invigilators_add'),
     path('invigilators_remove/<int:pk>', deleteViews.invigilators_remove, name='invigilators_remove'),
-
+    path('shifts_remove/<int:pk>',deleteViews.shifts_remove,name='shifts_remove'),
     path('exam_dates_edit/<int:pk>', editViews.exam_dates_edit, name='exam_dates_edit'),
     path('exam_dates_add/', addViews.exam_dates_add, name='exam_dates_add'),
     path('/exam_dates_remove/<int:pk>', deleteViews.exam_dates_remove, name='exam_dates_remove'),

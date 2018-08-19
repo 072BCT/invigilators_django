@@ -85,7 +85,7 @@ def exam_shifts_lv(request):
     objects = get_all_objects(Shift)
     deleteUrls = []
     for object in objects:
-        url = reverse('exam_shifts_remove', kwargs={'pk': object.pk})
+        url = reverse('shifts_remove', kwargs={'pk': object.pk})
         deleteUrls.append(url)
 
     return render(request, 'listViews/exam_shifts_lv.html', {'name': 'Exam Shifts',
