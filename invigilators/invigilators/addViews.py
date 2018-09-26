@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import render, get_object_or_404, redirect, reverse,render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from .models import *
@@ -12,6 +12,7 @@ from .formsDir.examCenterForm import ExamCenterForm
 from django.contrib.auth import admin
 from django.http import JsonResponse
 from django.core import serializers
+from django.db import OperationalError
 
 def exam_rooms_add(request):
     if request.method =='POST':
@@ -60,7 +61,7 @@ def exam_dates_add(request):
     if request.method =='POST':
         form = ExamDateForm(request.POST)
         if form.is_valid():
-            examdate = form.save()
+            examDate = form.save()
             return redirect('exam_dates_lv')
     else:
         form = ExamDateForm()
@@ -76,8 +77,17 @@ def shifts_add(request):
     if request.method =='POST':
         form = ShiftForm(request.POST)
         if form.is_valid():
-            shift = form.save()
-            return redirect('shifts_lv')
+            try:
+                shift = form.save()
+                return redirect('shifts_lv')
+            except OperationalError as e:
+
+                return render(request,'addViews/addViewBase.html',{'listViewUrl': reverse('shifts_lv'),
+                                                         'listViewName': 'Shifts',
+                                                         'name': 'Add New Shift',
+                                                         'form': ShiftForm(request.POST),
+                                                         'formError':e.__cause__.args[1],
+                                                         'errorFields':['startTime','endTime']})
     else:
         form = ShiftForm()
     return render(request, 'addViews/addViewBase.html', {'listViewUrl': reverse('shifts_lv'),
