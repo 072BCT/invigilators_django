@@ -5,4 +5,5 @@ from ..models import Invigilator
 class InvigilatorForm(forms.ModelForm):
     class Meta:
         model=Invigilator
-        fields = ['name','assignments']
+        fields = ['name','dob','assignments']
+        widgets = {'dob': forms.TextInput(attrs={'isDateField':True})}

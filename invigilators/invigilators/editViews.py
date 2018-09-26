@@ -11,6 +11,14 @@ from .formsDir.shiftForm import ShiftForm
 from django.contrib.auth import admin
 from django.http import JsonResponse
 from django.core import serializers
+from django import template
+
+
+register = template.Library()
+@register.filter(name='field_type')
+def get_field_type(field):
+    return field.field.widget.__class__.__name__
+
 
 def exam_rooms_edit(request,pk):
     examroom = get_object_or_404(ExamRoom, pk=pk)
@@ -104,3 +112,7 @@ def invigilators_edit(request,pk):
                                                          'listViewName': 'Invigilators',
                                                          'name': 'Add New Invigilator',
                                                          'form': form})
+
+
+def examCenter_edit(request):
+    return None

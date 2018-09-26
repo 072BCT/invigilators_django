@@ -59,8 +59,11 @@
 {% block extrajs %}
 
     <script>
+        $('.deleteButton').click(function(){
+           $(this).id = 'hasBeenClicked';
+        });
         $('#confirm').click(function(){
-        let id = $('.deleteButton').closest('tr').children().first();
+        let id = $('#hasBeenClicked').closest('tr').children().first();
         let idText = id.text();
         let idNum = parseInt(id.text());
         let deleteUrls=[];

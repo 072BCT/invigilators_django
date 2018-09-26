@@ -8,6 +8,7 @@ from .formsDir.examForm import ExamForm
 from .formsDir.invigilatorForm import InvigilatorForm
 from .formsDir.examDateForm import ExamDateForm
 from .formsDir.shiftForm import ShiftForm
+from .formsDir.examCenterForm import ExamCenterForm
 from django.contrib.auth import admin
 from django.http import JsonResponse
 from django.core import serializers
@@ -96,4 +97,17 @@ def invigilators_add(request):
     return render(request, 'addViews/addViewBase.html', {'listViewUrl': reverse('invigilators_lv'),
                                                          'listViewName': 'Invigilators',
                                                          'name': 'Add New Invigilator',
+                                                         'form': form})
+
+def examCenter_add(request):
+    if request.method =='POST':
+        form = ExamCenterForm(request.POST)
+        if form.is_valid():
+            examCenter = form.save()
+            return redirect('examCenters_lv')
+    else:
+        form = ExamCenterForm()
+    return render(request, 'addViews/addViewBase.html', {'listViewUrl': reverse('examCenters_lv'),
+                                                         'listViewName': 'Exam Centers',
+                                                         'name': 'Add New Exam Center',
                                                          'form': form})

@@ -5,4 +5,4 @@ from ..models import Exam
 class ExamForm(forms.ModelForm):
     class Meta:
         model=Exam
-        fields=['title']
+        fields=['title','examCenter']

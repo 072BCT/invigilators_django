@@ -4,6 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from .models import *
 from .formsDir.examRoomForm import ExamRoomForm
 from .formsDir.assignmentsForm import AssignmentsForm
+from .formsDir.examCenterForm import ExamCenterForm
 from django.contrib.auth import admin
 from django.http import JsonResponse
 from django.core import serializers
@@ -33,3 +34,10 @@ def shifts_remove(request,pk):
 def invigilators_remove(request,pk):
     Invigilator.objects.filter(pk=pk).delete()
     return JsonResponse({'message': 'success'})
+
+
+
+
+def examCenter_remove(request,pk):
+    ExamCenter.objects.filter(pk=pk).delete()
+    return JsonResponse({'message':'success'})

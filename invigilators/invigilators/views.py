@@ -7,13 +7,15 @@ from .formsDir.assignmentsForm import AssignmentsForm
 from django.contrib.auth import admin
 from django.http import JsonResponse
 from django.core import serializers
+from django import template
 # Create your views here.
 
 def index(request):
     modelNamesAndUrls = [('Exam Dates', reverse('exam_dates_lv')), ('Shifts', reverse('shifts_lv')),
                          ('Exams', reverse('exams_lv')),
                          ('Exam Rooms', reverse('exam_rooms_lv')), ('Invigilators', reverse('invigilators_lv')),
-                         ('Invigilator Assignments', reverse('assignments_lv'))]
+                         ('Invigilator Assignments', reverse('assignments_lv')),
+                         ('Exam Centers',reverse('examCenters_lv'))]
     return render(request, 'index.html', {'modelNamesAndUrls': modelNamesAndUrls})
 
 
@@ -27,7 +29,7 @@ def get_all_objects(model):
 
 
 def exams_lv(request):
-    headings = ['Name']
+    headings = ['Title', 'Exam Center']
     objects = get_all_objects(Exam)
     deleteUrls = []
     for object in objects:
@@ -41,7 +43,7 @@ def exams_lv(request):
 
 
 def invigilators_lv(request):
-    headings = ['Name','Assigned To']
+    headings = ['Name','Date of Birth','Assigned To']
     objects = get_all_objects(Invigilator)
     deleteUrls = []
     for object in objects:
@@ -102,7 +104,7 @@ def exam_rooms_lv(request):
         url = reverse('exam_rooms_remove', kwargs={'pk': object.pk})
         deleteUrls.append(url)
 
-        return render(request, 'listViews/exam_rooms_lv.html', {'name': 'Exam Rooms',
+    return render(request, 'listViews/exam_rooms_lv.html', {'name': 'Exam Rooms',
                                                             'objects': objects,
                                                             'headings': headings,
                                                        'deleteUrls': deleteUrls})
@@ -117,3 +119,17 @@ def get_dates_and_shifts(request):
         'shifts':serializers.serialize("json",exam.shifts.all())
     }
     return JsonResponse(data)
+
+
+def exam_centers_lv(request):
+    headings = ['Title']
+    objects = get_all_objects(ExamCenter)
+    deleteUrls = []
+    for object in objects:
+        url = reverse('examCenter_remove', kwargs={'pk': object.pk})
+        deleteUrls.append(url)
+
+    return render(request, 'listViews/examCenters_lv.html', {'name': 'Exam Centers',
+                                                            'objects': objects,
+                                                            'headings': headings,
+                                                            'deleteUrls': deleteUrls})

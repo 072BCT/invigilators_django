@@ -2,14 +2,15 @@ from django.db import models
 
 # Create your models here.
 
+class ExamCenter(models.Model):
+    title = models.CharField(max_length=255,unique=True)
 
 class Exam(models.Model):
     title = models.CharField(max_length=255,unique=True)
-
+    examCenter = models.CharField(max_length=255)
 
     def __str__(self):
         return self.title
-
 
 class ExamDate(models.Model):
     class Meta:
@@ -54,8 +55,8 @@ class InvigilatorAssignment(models.Model):
 
 class Invigilator(models.Model):
     name = models.CharField(unique=True,max_length=255,blank=False)
-    assignments = models.ManyToManyField(InvigilatorAssignment,related_name='invigilators',blank=True,null=True,
-                                   )
+    assignments = models.ManyToManyField(InvigilatorAssignment,related_name='invigilators',blank=True,null=True,)
+    dob = models.DateField(unique=True)
     examroom = models.ForeignKey(ExamRoom,related_name='invigilators',blank=True,null=True,on_delete=models.CASCADE)
 
     def __str__(self):
