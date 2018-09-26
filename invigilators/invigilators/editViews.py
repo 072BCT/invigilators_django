@@ -8,6 +8,7 @@ from .formsDir.examForm import ExamForm
 from .formsDir.invigilatorForm import InvigilatorForm
 from .formsDir.examDateForm import ExamDateForm
 from .formsDir.shiftForm import ShiftForm
+from .formsDir.examCenterForm import ExamCenterForm
 from django.contrib.auth import admin
 from django.http import JsonResponse
 from django.core import serializers
@@ -114,5 +115,17 @@ def invigilators_edit(request,pk):
                                                          'form': form})
 
 
-def examCenter_edit(request):
-    return None
+def examCenter_edit(request,pk):
+    examCenter = get_object_or_404(ExamCenter, pk=pk)
+
+    if request.method == 'POST':
+        form = ExamCenterForm(request.POST, instance=examCenter)
+        if form.is_valid():
+            examCenter = form.save()
+            return redirect('examCenters_lv')
+    else:
+        form = ExamCenterForm(instance=examCenter)
+    return render(request, 'editviews/editViewsBase.html', {'listViewUrl': reverse('examCenters_lv'),
+                                                            'listViewName': 'Exam Centers',
+                                                            'name': 'Add New Exam Center',
+                                                            'form': form})
