@@ -4,10 +4,12 @@ from django.db import models
 
 class ExamCenter(models.Model):
     title = models.CharField(max_length=255,unique=True)
+    def __str__(self):
+        return self.title
 
 class Exam(models.Model):
     title = models.CharField(max_length=255,unique=True)
-    examCenter = models.CharField(max_length=255)
+    examCenters = models.ManyToManyField(ExamCenter,related_name="exams")
 
     def __str__(self):
         return self.title
@@ -55,7 +57,7 @@ class InvigilatorAssignment(models.Model):
 
 class Invigilator(models.Model):
     name = models.CharField(unique=True,max_length=255,blank=False)
-    assignments = models.ManyToManyField(InvigilatorAssignment,related_name='invigilators',blank=True,null=True,)
+    assignments = models.ManyToManyField(InvigilatorAssignment,related_name='invigilators',blank=True)
     dob = models.DateField(unique=True)
     examroom = models.ForeignKey(ExamRoom,related_name='invigilators',blank=True,null=True,on_delete=models.CASCADE)
 

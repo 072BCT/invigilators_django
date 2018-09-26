@@ -29,7 +29,7 @@ def get_all_objects(model):
 
 
 def exams_lv(request):
-    headings = ['Title', 'Exam Center']
+    headings = ['Title', 'Exam Center(s)']
     objects = get_all_objects(Exam)
     deleteUrls = []
     for object in objects:
@@ -69,7 +69,7 @@ def assignments_lv(request):
 
 
 def exam_dates_lv(request):
-    headings = ['Exam', 'Date']
+    headings = ['Date', 'Exam']
     objects = get_all_objects(ExamDate)
     deleteUrls = []
     for object in objects:
