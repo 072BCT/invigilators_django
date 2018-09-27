@@ -69,7 +69,7 @@ def assignments_lv(request):
 
 
 def exam_dates_lv(request):
-    headings = ['Date', 'Exam']
+    headings = ['Date', 'Exam', 'Exam Center(s)']
     objects = get_all_objects(ExamDate)
     deleteUrls = []
     for object in objects:

@@ -19,7 +19,7 @@ class ExamDate(models.Model):
         unique_together=(('date', 'exam'),)
     date = models.DateField(blank=False)
     exam = models.ForeignKey(Exam,on_delete=models.CASCADE,related_name="dates")
-
+    examCenters = models.ManyToManyField(ExamCenter,related_name="dates")
     def __str__(self):
         return str(self.date)
 

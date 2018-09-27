@@ -1,10 +1,16 @@
 {% extends 'listViews/list_view_base.html' %}
 {% block data %}
             <td>{{ object.name }}</td>
-            <td>{% for assignment in object.assignments.all %}
-            {{ assignment }}
-                <br>
-            {% endfor %}
+            <td>{{ object.dob}}</td>
+            <td>{% if object.assignments.all %}
+
+                    {% for assignment in object.assignments.all %}
+                        {{ assignment }}
+                        <br>
+                    {% endfor %}
+                {% else %}
+                    <span></span>
+                 {% endif %}
             </td>
             <td><a class="btn btn-primary" role="button" href="{% url 'invigilators_edit' object.pk %}"><i class="fa fa-edit"></i></a>
             <button class="btn btn-danger deleteButton" type="button"  role="button" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i></button></td>

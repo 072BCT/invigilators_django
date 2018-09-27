@@ -3,4 +3,4 @@ from ..models import ExamDate
 class ExamDateForm(forms.ModelForm):
     class Meta:
         model=ExamDate
-        fields=['date','exam']
+        fields=['date','exam','examCenters']

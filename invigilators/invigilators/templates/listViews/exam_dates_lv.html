@@ -3,6 +3,16 @@
 {% block data %}
             <td>{{ object.date }}</td>
             <td>{{ object.exam }}</td>
+            <td>{% if object.examCenters.all %}
+
+                    {% for examCenter in object.examCenters.all %}
+                        {{ examCenter }}
+                        <br>
+                    {% endfor %}
+                {% else %}
+                    <span></span>
+                 {% endif %}
+            </td>
             <td><a class="btn btn-primary" role="button" href="{% url 'exam_dates_edit' object.pk %}"><i class="fa fa-edit"></i></a>
             <button class="btn btn-danger deleteButton" type="button" role="button" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i></button></td>
 {% endblock %}
