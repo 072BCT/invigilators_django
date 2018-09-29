@@ -4,11 +4,12 @@
         {% block data %}
             <td>{{ object.exam }}</td>
             <td>{{ object.date }}</td>
+            <td>{{ object.examCenter }}</td>
             <td>{{ object.shift }}</td>
             <td>{{ object.examroom }}</td>
             <td><a class="btn btn-primary" role="button" href="{% url 'assignments_edit' object.pk %}"><i class="fa fa-edit"></i></a>
             <button class="btn btn-danger deleteButton" type="button" role="button" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash"></i></button></td>
         {% endblock %}
         {% block addBtn %}
-            <a class="btn btn-success" href="{% url 'assignments_add' %}">Assign next Invigilator</a>
+            <a class="btn btn-success" href="{% url 'assignments_add' %}">Add New Assignment</a>
         {% endblock %}

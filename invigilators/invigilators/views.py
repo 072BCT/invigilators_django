@@ -56,7 +56,7 @@ def invigilators_lv(request):
 
 
 def assignments_lv(request):
-    headings = ['Exam', 'Date', 'Shift','Room']
+    headings = ['Exam', 'Date','Exam Center', 'Shift','Room']
     objects = get_all_objects(InvigilatorAssignment)
     deleteUrls = []
     for object in objects:
@@ -97,7 +97,7 @@ def exam_shifts_lv(request):
 
 
 def exam_rooms_lv(request):
-    headings = ['Name', 'Capacity']
+    headings = ['Name', 'Capacity','Exam Center']
     objects = get_all_objects(ExamRoom)
     deleteUrls = []
     for object in objects:

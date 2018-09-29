@@ -5,5 +5,5 @@ from ..models import ExamRoom
 class ExamRoomForm(forms.ModelForm):
     class Meta:
         model = ExamRoom
-        fields = ['name','capacity']
+        fields = ['name','capacity','examCenter']
 

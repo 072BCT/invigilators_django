@@ -5,4 +5,4 @@ from ..models import *
 class AssignmentsForm(forms.ModelForm):
     class Meta:
         model = InvigilatorAssignment
-        fields = ['exam','date','shift','examroom']
+        fields = ['exam','date','examCenter','shift','examroom']

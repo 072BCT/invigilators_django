@@ -35,8 +35,11 @@ class Shift(models.Model):
 
 
 class ExamRoom(models.Model):
-    name = models.CharField(unique=True, max_length=255,blank=False)
+    class Meta:
+        unique_together = (('name','examCenter'),)
+    name = models.CharField(max_length=255,blank=False)
     capacity = models.IntegerField(blank=False)
+    examCenter = models.ForeignKey(ExamCenter,on_delete=models.CASCADE,related_name="examRooms")
 
     def __str__(self):
         return self.name
@@ -50,7 +53,7 @@ class InvigilatorAssignment(models.Model):
     date = models.ForeignKey(ExamDate,on_delete=models.CASCADE,related_name='invigilator_assignments')
     shift = models.ForeignKey(Shift,on_delete=models.CASCADE,related_name='invigilator_assignments')
     examroom = models.OneToOneField(ExamRoom,on_delete=models.CASCADE,null=True,unique=False)
-
+    examCenter = models.OneToOneField(ExamCenter,on_delete=models.CASCADE,null=True)
     def __str__(self):
         return self.exam.title +" "+ str(self.date.date) + " "+ str(self.shift.shiftName)+" " +str(self.examroom.name)
 
